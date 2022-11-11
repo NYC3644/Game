@@ -2,14 +2,14 @@ package Game.Game.domain;
 
 import java.time.LocalDate;
 
-public class Character {
+public class User {
     private Long id;
     private String nickName;
     private Long level;
     private Long experience;
     private LocalDate createdAt;
 
-    public Character(Long id, String nickName, Long level, Long experience, LocalDate createdAt) {
+    public User(Long id, String nickName, Long level, Long experience, LocalDate createdAt) {
         this.id = id;
         this.nickName = nickName;
         this.level = level;
