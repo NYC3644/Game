@@ -1,18 +1,21 @@
 package Game.Game.service;
 
 import Game.Game.domain.User;
-import Game.Game.repository.UserRepository;
+import Game.Game.repository.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserService {
 
-    private UserRepository userRepository;
+    @Autowired
+    private final UserMapper userMapper;
 
-    @Override
-    public void save(User user) {
+    public UserService(UserMapper userMapper) {
+        this.userMapper = userMapper;
     }
 
-    @Override
-    public User findById(Long user) {
-        return null;
+    public User save(User user) {
+        userMapper.save(user);
+
+        return user;
     }
 }

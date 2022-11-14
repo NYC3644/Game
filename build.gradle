@@ -21,7 +21,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	//
+	//마이바티스
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 }
 

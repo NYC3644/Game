@@ -1,9 +1,10 @@
 package Game.Game.repository;
 
 import Game.Game.domain.User;
+import org.apache.ibatis.annotations.Mapper;
 
-
-public interface UserRepository {
+@Mapper
+public interface UserMapper {
 
     void save(User user);
 
