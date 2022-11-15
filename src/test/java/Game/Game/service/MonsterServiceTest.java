@@ -1,36 +1,28 @@
 package Game.Game.service;
 
-import Game.Game.domain.User;
+import Game.Game.domain.Monster;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class UserServiceTest {
+class MonsterServiceTest {
 
     @Autowired
-    private UserService userService;
+    private MonsterService monsterService;
 
     @Test
-    @DisplayName("회원 정보 저장")
-    void UserSave() {
-
+    @DisplayName("몬스터 정보 생성")
+    void MonsterSave() {
         //given
-        Long id = 1L;
-        String nickName = "nyc";
-        Long level = null;
-        Long experience = 0L;
-        LocalDate createAt = LocalDate.now();
+        Monster actual = new Monster(1L, "Orc", 20L);
 
         //when
-        User actual = new User(id, nickName, level, experience, createAt);
-        userService.save(actual);
+        monsterService.save(actual);
 
         //then
         assertThat(actual.getId()).isEqualTo(1L);
