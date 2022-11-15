@@ -25,4 +25,12 @@ class MonsterTest {
                 .hasMessage("닉네임은 10글자를 초과할 수 없습니다");
     }
 
+    @Test
+    @DisplayName("몬스터 경험치는 100을 초과할 수 없다")
+    void monsterExperienceCheck() {
+
+        assertThatThrownBy(() -> new Monster(1L, "asdfasdf", 1000L))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("몬스터 경험치는 100을 초과할 수 없습니다");
+    }
 }

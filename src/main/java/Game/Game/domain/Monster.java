@@ -12,6 +12,7 @@ public class Monster {
         this.experience = experience;
 
         monsterNameCheck();
+        monsterExperience();
     }
 
     public Long getId() {
@@ -41,6 +42,12 @@ public class Monster {
     private void monsterNameCheck() {
         if(monsterName.length() > 10) {
             throw new IllegalArgumentException("닉네임은 10글자를 초과할 수 없습니다");
+        }
+    }
+
+    private void monsterExperience() {
+        if(experience > 100) {
+            throw new IllegalArgumentException("몬스터 경험치는 100을 초과할 수 없습니다");
         }
     }
 }
