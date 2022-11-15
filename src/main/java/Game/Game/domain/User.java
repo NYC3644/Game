@@ -62,8 +62,8 @@ public class User {
     }
 
     private void nickNameCheck() {
-        if(nickName.length() >= 10) {
-                throw new IllegalArgumentException("닉네임은 10글자 이상일 수 없습니다.");
+        if(nickName.length() > 10) {
+                throw new IllegalArgumentException("닉네임은 10글자를 초과할 수 없습니다.");
         }
     }
 
