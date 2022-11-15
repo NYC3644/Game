@@ -16,7 +16,13 @@ public class UserService {
 
     public User save(User user) {
         userMapper.save(user);
-
+        System.out.println("user = " + user);
+        System.out.println("user = " + user);
+        System.out.println("user = " + user);
+        System.out.println("user = " + user);
+        System.out.println("user = " + user);
+        System.out.println("user = " + user);
+        System.out.println("user = " + user);
         return user;
     }
 }
