@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Game.Game.repository.UserMapper">
 
-    <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert into user (user_id, user_nick_name, user_level, user_experience, user_create_at)
-        values (#{Id}, #{nickName}, #{level}, #{experience}, #{createAt})
+    <insert id ="save" useGeneratedKeys="true" keyProperty="id">
+        insert into users (id, nick_name, lever, experience, create_at)
+        values (#{id}, #{nickName}, #{level}, #{experience}, #{createdAt})
     </insert>
 
 </mapper>
