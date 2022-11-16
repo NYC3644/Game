@@ -14,10 +14,22 @@ create table monster(
   constraint u_id primary key (id)
 );
 
+# ----------유저 쿼리---------
 SELECT *
 FROM users
 WHERE nick_name = 'nyc';
 
-delete
-from users
-where id = id;
+DELETE
+FROM users
+WHERE id = id;
+
+
+
+# ----------몬스터 쿼리---------
+SELECT *
+FROM monster;
+
+DELETE
+FROM monster
+WHERE id = id;
+

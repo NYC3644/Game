@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -26,5 +28,22 @@ class MonsterServiceTest {
 
         //then
         assertThat(actual.getId()).isEqualTo(1L);
+    }
+
+    @Test
+    @DisplayName("몬스터 이름으로 검색")
+    void findByMonsterName() {
+        //given
+        Long id = 1L;
+        String monsterName = "Orc";
+        Long experience = 20L;
+        Monster monster = new Monster(id, monsterName, experience);
+
+        //when
+        Monster actual = monsterService.save(monster);
+        Monster findByMonsterName = monsterService.findByMonsterName(monsterName);
+
+        //then
+        assertThat(actual.getMonsterName()).isEqualTo(findByMonsterName.getMonsterName());
     }
 }

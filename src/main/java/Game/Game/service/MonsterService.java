@@ -18,4 +18,8 @@ public class MonsterService {
 
         return monster;
     }
+
+    public Monster findByMonsterName(String monsterName) {
+        return monsterMapper.findByMonsterName(monsterName);
+    }
 }
