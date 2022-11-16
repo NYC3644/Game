@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MonsterMapper {
     void save(Monster monster);
+
+    Monster findByMonsterName(String monsterName);
 }

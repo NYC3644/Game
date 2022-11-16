@@ -8,4 +8,12 @@
         values (#{id}, #{monsterName}, #{experience})
     </insert>
 
+    <select id="findByMonsterName" resultType="Monster">
+        select id, monster_name, experience
+        from monster
+        <where>
+            monster_name = #{monsterName}
+        </where>
+    </select>
+
 </mapper>
