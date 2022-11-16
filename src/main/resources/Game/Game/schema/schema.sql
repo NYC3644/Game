@@ -16,4 +16,8 @@ create table monster(
 
 SELECT *
 FROM users
-WHERE id = id;
+WHERE nick_name = 'nyc';
+
+delete
+from users
+where id = id;

@@ -4,8 +4,16 @@
 <mapper namespace="Game.Game.repository.UserMapper">
 
     <insert id ="save" useGeneratedKeys="true" keyProperty="id">
-        insert into users (id, nick_name, lever, experience, create_at)
+        insert into users (id, nick_name, level, experience, create_at)
         values (#{id}, #{nickName}, #{level}, #{experience}, #{createdAt})
     </insert>
+
+    <select id="findByNickName" resultType="User">
+        select id, nick_name, level, experience, create_at
+        from users
+        <where>
+            nick_name = #{nickName}
+        </where>
+    </select>
 
 </mapper>
