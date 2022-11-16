@@ -34,13 +34,16 @@ class MonsterServiceTest {
     @DisplayName("몬스터 이름으로 검색")
     void findByMonsterName() {
         //given
-        Monster monster = new Monster(1L, "Orc", 20L);
+        Long id = 1L;
+        String monsterName = "Orc";
+        Long experience = 20L;
+        Monster monster = new Monster(id, monsterName, experience);
 
         //when
         Monster actual = monsterService.save(monster);
-        Monster orc = monsterService.findByMonsterName(actual.getMonsterName());
+        Monster findByMonsterName = monsterService.findByMonsterName(monsterName);
 
         //then
-        assertThat(orc.getMonsterName()).isEqualTo("Orc");
+        assertThat(actual.getMonsterName()).isEqualTo(findByMonsterName.getMonsterName());
     }
 }
