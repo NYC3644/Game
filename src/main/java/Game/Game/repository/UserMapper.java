@@ -8,5 +8,5 @@ public interface UserMapper {
 
     void save(User user);
 
-    User findById(Long user);
+    User findByNickName(String nickName);
 }
