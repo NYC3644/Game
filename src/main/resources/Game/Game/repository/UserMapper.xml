@@ -16,6 +16,14 @@
         </where>
     </select>
 
+    <select id="findById" resultType="User">
+        select *
+        from users
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
     <update id="hunt">
         update users
         <set>

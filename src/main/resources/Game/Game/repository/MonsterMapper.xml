@@ -9,10 +9,18 @@
     </insert>
 
     <select id="findByMonsterName" resultType="Monster">
-        select id, monster_name, experience
+        select *
         from monster
         <where>
             monster_name = #{monsterName}
+        </where>
+    </select>
+
+    <select id="findById" resultType="Monster">
+        select *
+        from monster
+        <where>
+            id = #{id}
         </where>
     </select>
 
