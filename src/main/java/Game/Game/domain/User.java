@@ -18,6 +18,10 @@ public class User {
         nickNameCheck();
     }
 
+    public static User signUp(final String nickname){
+        return new User(null, nickname, null, 0L, LocalDate.now());
+    }
+
     public User() {
     }
 

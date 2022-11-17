@@ -1,5 +1,6 @@
 package Game.Game.service;
 
+import Game.Game.Dto.UserSaveDto;
 import Game.Game.domain.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,38 +23,28 @@ class UserServiceTest {
     @Test
     @DisplayName("회원 정보 저장")
     void UserSave() {
-
         //given
-        Long id = 1L;
         String nickName = "nyc";
-        Long level = null;
-        Long experience = 0L;
-        LocalDate createAt = LocalDate.now();
 
         //when
-        User actual = new User(id, nickName, level, experience, createAt);
-        userService.save(actual);
+        userService.save(new UserSaveDto(nickName));
+        Optional<User> actual = userService.findByNickName(nickName);
 
         //then
-        assertThat(actual.getId()).isEqualTo(1L);
+        assertThat(actual.isPresent()).isTrue();
     }
 
     @Test
     @DisplayName("닉네임으로 검색")
     void findByNickName() {
         //given
-        Long id = 1L;
         String nickName = "nyc";
-        Long level = null;
-        Long experience = 0L;
-        LocalDate createAt = LocalDate.now();
-        User user = new User(id, nickName, level, experience, createAt);
 
         //when
-        User actual = userService.save(user);
-        User findByNickName = userService.findByNickName(nickName);
+        userService.save(new UserSaveDto(nickName));
+        User actual = userService.findByNickName(nickName).get();
 
         //then
-        assertThat(actual.getNickName()).isEqualTo(findByNickName.getNickName());
+        assertThat(actual.getNickName()).isEqualTo(nickName);
     }
 }

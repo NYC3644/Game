@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    public UserService userService(UserMapper userMapper) {
-        return new UserService(userMapper);
+    public UserService userService(UserMapper userMapper, MonsterMapper monsterMapper) {
+        return new UserService(userMapper, monsterMapper);
     }
 
     @Bean
