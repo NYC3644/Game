@@ -1,15 +1,21 @@
 package Game.Game.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class User {
     private Long id;
     private String nickName;
     private Long level;
     private Long experience;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
-    public User (Long id, String nickName, Long level, Long experience, LocalDate createdAt) {
+    /*
+    * 사용시점 : ALL
+    * 1. levelCheck
+    * 2. nickNameCheck
+    * */
+    public User (Long id, String nickName, Long level, Long experience, LocalDateTime createdAt) {
         this.id = id;
         this.nickName = nickName;
         this.level = levelCheck(level);
@@ -19,7 +25,7 @@ public class User {
     }
 
     public static User signUp(final String nickname){
-        return new User(null, nickname, null, 0L, LocalDate.now());
+        return new User(null, nickname, null, 0L, LocalDateTime.now());
     }
 
     public User() {
@@ -57,20 +63,29 @@ public class User {
         this.experience = experience;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
+    /*
+    * 사용시점 : 생성자
+    * 설명 : 닉네임이 10글자 초과시 오류 발생
+    * */
     private void nickNameCheck() {
         if(nickName.length() > 10) {
                 throw new IllegalArgumentException("닉네임은 10글자를 초과할 수 없습니다.");
         }
     }
 
+    /*
+    * 사용시점 : 생성자
+    * 1. 파라미터가 null일 경우 1L 반환
+    * 2. 파라미터가 레벨이 있을경우 그대로 반환
+    * */
     private Long levelCheck(Long level) {
         if(level == null){
             return 1L;
@@ -79,6 +94,10 @@ public class User {
         return level;
     }
 
+    /*
+    * 사용하는 클래스 : userService.hunt()
+    * 몬스터의 경험치 합을 받아 레벨과 경험치를 증가시키는 함수
+    * */
     public void levelUp(Long experience) {
         this.experience = this.experience + experience;
         if(this.experience >= 100) {

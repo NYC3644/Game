@@ -14,5 +14,5 @@ public interface UserMapper {
 
     Optional<User> findById(Long id);
 
-    User hunt(Long monsterId);
+    User hunt(Long userId, Long level, Long experience);
 }

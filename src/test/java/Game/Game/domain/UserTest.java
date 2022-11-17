@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ class UserTest {
     @DisplayName("맴버를 정상적으로 생성한다")
     void create(){
         //given & when & then
-        assertDoesNotThrow(() -> new User(1L, "asd", null, 0L, LocalDate.now()));
+        assertDoesNotThrow(() -> new User(1L, "asd", null, 0L, LocalDateTime.now()));
     }
 
     @Test
@@ -26,7 +27,7 @@ class UserTest {
         String nickname = "asdadwadadw";
         Long level = null;
         Long experience = 0L;
-        LocalDate createAt = LocalDate.now();
+        LocalDateTime createAt = LocalDateTime.now();
 
         //when & then
         assertThatThrownBy(() -> new User(id, nickname, level, experience, createAt))
@@ -42,7 +43,7 @@ class UserTest {
         String nickname = "asdadwadw";
         Long level = null;
         Long experience = 0L;
-        LocalDate createAt = LocalDate.now();
+        LocalDateTime createAt = LocalDateTime.now();
 
         //when
         User actual = new User(id, nickname, level, experience, createAt);
@@ -59,7 +60,7 @@ class UserTest {
         String nickname = "asdadwadw";
         Long level = 2L;
         Long experience = 50L;
-        LocalDate createAt = LocalDate.now();
+        LocalDateTime createAt = LocalDateTime.now();
 
         //when
         User actual = new User(id, nickname, level, experience, createAt);
