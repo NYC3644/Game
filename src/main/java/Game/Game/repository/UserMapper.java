@@ -9,4 +9,6 @@ public interface UserMapper {
     void save(User user);
 
     User findByNickName(String nickName);
+
+    User hunt(Long monsterId);
 }
