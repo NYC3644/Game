@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface MonsterMapper {
     void save(Monster monster);
 
-    Monster findByMonsterName(String monsterName);
+    Optional<Monster> findByMonsterName(String monsterName);
 
     Optional<Monster> findById(Long id);
 }

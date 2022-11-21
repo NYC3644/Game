@@ -6,11 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @SpringBootTest
 class MonsterServiceTest {
 
@@ -34,16 +34,16 @@ class MonsterServiceTest {
     @DisplayName("몬스터 이름으로 검색")
     void findByMonsterName() {
         //given
-        Long id = 1L;
+        Long id = null;
         String monsterName = "Orc";
         Long experience = 20L;
         Monster monster = new Monster(id, monsterName, experience);
 
         //when
-        Monster actual = monsterService.save(monster);
+        Long actual = monsterService.save(monster);
         Monster findByMonsterName = monsterService.findByMonsterName(monsterName);
 
         //then
-        assertThat(actual.getMonsterName()).isEqualTo(findByMonsterName.getMonsterName());
+        assertThat(actual).isEqualTo(findByMonsterName.getId());
     }
 }

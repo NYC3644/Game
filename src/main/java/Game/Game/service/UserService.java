@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class UserService {
 
@@ -24,9 +25,19 @@ public class UserService {
         this.monsterMapper = monsterMapper;
     }
 
-    public void save(UserSaveDto request) {
+
+    public Long save(UserSaveDto request) {
+        validateExistNickname(request.getNickName());
+
         User user = User.signUp(request.getNickName());
         userMapper.save(user);
+        return user.getId();
+    }
+
+    private void validateExistNickname(String nickname) {
+        if(findByNickName(nickname).isPresent()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public Optional<User> findByNickName(String nickName) {

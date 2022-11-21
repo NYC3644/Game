@@ -1,8 +1,12 @@
 package Game.Game.service;
 
+import Game.Game.Dto.MonsterSaveDto;
 import Game.Game.domain.Monster;
 import Game.Game.repository.MonsterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Objects;
+import java.util.Optional;
 
 public class MonsterService {
 
@@ -13,13 +17,33 @@ public class MonsterService {
         this.monsterMapper = monsterMapper;
     }
 
-    public Monster save(Monster monster){
+    /*
+    * 몬스터 정보 저장
+    * 몬스터 이름 중복 허용 안함
+    */
+    public Long save(MonsterSaveDto request){
+        validateExistMonsterName(request.getMonsterName());
+
+        Monster monster = Monster.add(request.getMonsterName(), request.getExperience());
         monsterMapper.save(monster);
 
-        return monster;
+        return monster.getId();
     }
 
+    //isPresent: 값이 있으면 true 반환
+    private void validateExistMonsterName(String monsterName) {
+        if(monsterMapper.findByMonsterName(monsterName).isPresent())
+        {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /*
+    * 몬스터 이름으로 검색
+    * orElseThrow: null 일경우 오류 반환
+    * */
     public Monster findByMonsterName(String monsterName) {
-        return monsterMapper.findByMonsterName(monsterName);
+        return monsterMapper.findByMonsterName(monsterName)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

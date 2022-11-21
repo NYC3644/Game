@@ -1,5 +1,7 @@
 package Game.Game.domain;
 
+import java.time.LocalDateTime;
+
 public class Monster {
 
     private Long id;
@@ -13,6 +15,10 @@ public class Monster {
 
         monsterNameCheck();
         monsterExperience();
+    }
+
+    public static Monster add(final String monsterName, Long experience){
+        return new Monster(null, monsterName, experience);
     }
 
     public Long getId() {

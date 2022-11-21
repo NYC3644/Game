@@ -24,6 +24,10 @@ public class User {
         nickNameCheck();
     }
 
+    /*
+    * 사용시점: save(회원가입)
+    * 설명: 유저 회원가입시 닉네임만 입력하면 나머지 값은 자동으로 입력
+    * */
     public static User signUp(final String nickname){
         return new User(null, nickname, null, 0L, LocalDateTime.now());
     }
@@ -35,41 +39,27 @@ public class User {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getNickName() {
         return nickName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
 
     public Long getLevel() {
         return level;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
     }
 
     public Long getExperience() {
         return experience;
     }
 
-    public void setExperience(Long experience) {
-        this.experience = experience;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     /*
     * 사용시점 : 생성자

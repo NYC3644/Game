@@ -32,7 +32,7 @@ class UserTest {
         //when & then
         assertThatThrownBy(() -> new User(id, nickname, level, experience, createAt))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("닉네임은 10글자 이상일 수 없습니다.");
+                .hasMessage("닉네임은 10글자를 초과할 수 없습니다.");
     }
 
     @Test
