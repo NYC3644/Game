@@ -1,5 +1,6 @@
 package Game.Game.service;
 
+import Game.Game.Dto.MonsterInfoDto;
 import Game.Game.Dto.MonsterSaveDto;
 import Game.Game.domain.Monster;
 import Game.Game.repository.MonsterMapper;
@@ -45,5 +46,12 @@ public class MonsterService {
     public Monster findByMonsterName(String monsterName) {
         return monsterMapper.findByMonsterName(monsterName)
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public MonsterInfoDto findByMonsterId(Long id) {
+        Optional<Monster> monsterId = monsterMapper.findById(id);
+        Monster monster = monsterId.orElseThrow(() -> new IllegalArgumentException());
+
+        return new MonsterInfoDto(monster);
     }
 }
