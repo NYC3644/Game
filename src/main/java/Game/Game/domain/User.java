@@ -1,11 +1,10 @@
 package Game.Game.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class User {
     private Long id;
-    private String nickName;
+    private String nickname;
     private Long level;
     private Long experience;
     private LocalDateTime createdAt;
@@ -13,11 +12,11 @@ public class User {
     /*
     * 사용시점 : ALL
     * 1. levelCheck
-    * 2. nickNameCheck
+    * 2. nicknameCheck
     * */
-    public User (Long id, String nickName, Long level, Long experience, LocalDateTime createdAt) {
+    public User (Long id, String nickname, Long level, Long experience, LocalDateTime createdAt) {
         this.id = id;
-        this.nickName = nickName;
+        this.nickname = nickname;
         this.level = levelCheck(level);
         this.experience = experience;
         this.createdAt = createdAt;
@@ -43,8 +42,8 @@ public class User {
 //        this.id = id;
 //    }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
 
@@ -66,7 +65,7 @@ public class User {
     * 설명 : 닉네임이 10글자 초과시 오류 발생
     * */
     private void nickNameCheck() {
-        if(nickName.length() > 10) {
+        if(nickname.length() > 10) {
                 throw new IllegalArgumentException("닉네임은 10글자를 초과할 수 없습니다.");
         }
     }

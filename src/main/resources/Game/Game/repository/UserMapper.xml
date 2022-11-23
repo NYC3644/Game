@@ -24,6 +24,14 @@
         </where>
     </select>
 
+    <select id="selectAll" resultType="User">
+        select *
+        from users
+        <where>
+            nick_name like concat('%', #{nickname},  '%')
+        </where>
+    </select>
+
     <update id="hunt">
         update users
         <set>

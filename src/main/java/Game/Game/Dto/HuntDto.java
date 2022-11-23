@@ -6,6 +6,9 @@ public class HuntDto {
 
     private int number;
 
+    public HuntDto() {
+    }
+
     public HuntDto(Long monsterId, int number) {
         this.monsterId = monsterId;
         this.number = number;

@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 public class UserInfoDto {
 
     private Long id;
-    private String nickName;
+    private String nickname;
     private Long level;
     private Long experience;
     private LocalDateTime createdAt;
 
     public UserInfoDto(User user) {
         this.id = user.getId();
-        this.nickName = user.getNickName();
+        this.nickname = user.getNickname();
         this.level = user.getLevel();
         this.experience = user.getExperience();
         this.createdAt = user.getCreatedAt();
@@ -24,8 +24,8 @@ public class UserInfoDto {
         return id;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
     public Long getLevel() {

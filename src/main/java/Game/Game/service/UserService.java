@@ -1,18 +1,16 @@
 package Game.Game.service;
 
 import Game.Game.Dto.HuntDto;
+import Game.Game.Dto.UserInfoDto;
 import Game.Game.Dto.UserSaveDto;
 import Game.Game.domain.Monster;
 import Game.Game.domain.User;
 import Game.Game.repository.MonsterMapper;
 import Game.Game.repository.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public class UserService {
 
@@ -27,21 +25,25 @@ public class UserService {
 
 
     public Long save(UserSaveDto request) {
-        validateExistNickname(request.getNickName());
+        validateExistNickName(request.getNickName());
 
         User user = User.signUp(request.getNickName());
         userMapper.save(user);
         return user.getId();
     }
 
-    private void validateExistNickname(String nickname) {
+    /*
+    * 닉네임 중복검사
+    * 이미 사용중인 닉네임이면 오류를 던짐
+    * */
+    private void validateExistNickName(String nickname) {
         if(findByNickName(nickname).isPresent()) {
             throw new IllegalArgumentException();
         }
     }
 
-    public Optional<User> findByNickName(String nickName) {
-        return Optional.ofNullable(userMapper.findByNickName(nickName));
+    public Optional<User> findByNickName(String nickname) {
+        return Optional.ofNullable(userMapper.findByNickname(nickname));
     }
 
     public User findById(Long id) {
@@ -49,6 +51,9 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 
+    public List<UserInfoDto> selectAll(String name) {
+        return userMapper.selectAll(name);
+    }
 
     public void hunt(Long userId ,Long monsterId , int num) {
         // 아이디를 통해 유저 정보 및 몬스터 정보 조회
@@ -77,6 +82,7 @@ public class UserService {
         //user 정보를 업데이트
         userMapper.hunt(userId, user.getLevel(), user.getExperience());
     }
+
 
     private Long totalExperience(List<HuntDto> request) {
         Long totalEx = 0L;

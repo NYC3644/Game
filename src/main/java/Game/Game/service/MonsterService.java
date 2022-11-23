@@ -6,6 +6,7 @@ import Game.Game.domain.Monster;
 import Game.Game.repository.MonsterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -50,8 +51,13 @@ public class MonsterService {
 
     public MonsterInfoDto findByMonsterId(Long id) {
         Optional<Monster> monsterId = monsterMapper.findById(id);
-        Monster monster = monsterId.orElseThrow(() -> new IllegalArgumentException());
+        Monster monster = monsterId.orElseThrow(IllegalArgumentException::new);
 
         return new MonsterInfoDto(monster);
+    }
+
+    public List<MonsterInfoDto> selectAll(String monsterName) {
+
+        return monsterMapper.selectAll(monsterName);
     }
 }

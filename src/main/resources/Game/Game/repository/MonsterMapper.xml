@@ -24,4 +24,12 @@
         </where>
     </select>
 
+    <select id="selectAll" resultType="Monster">
+        select *
+        from monster
+        <where>
+            monster_name like concat('%', #{monsterName}, '%')
+        </where>
+    </select>
+
 </mapper>
